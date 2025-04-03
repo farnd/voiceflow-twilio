@@ -25,8 +25,19 @@ app.post('/voice', async (req, res) => {
     const responseText = vfRes.data[0]?.payload?.message || "Sorry, I didn't catch that.";
 
     const response = new twiml.VoiceResponse();
-    response.say(responseText);
-    response.redirect('/voice'); // keeps the convo going
+
+const gather = response.gather({
+  input: 'speech',
+  action: '/voice',
+  method: 'POST',
+  speechTimeout: 'auto'
+});
+
+gather.say(responseText);
+
+// If the user doesn’t say anything, repeat the prompt
+response.redirect('/voice');
+
 
     res.type('text/xml');
     res.send(response.toString());
