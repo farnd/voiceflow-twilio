@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const VOICEFLOW_VERSION_ID = process.env.VOICEFLOW_VERSION_ID;
 const API_KEY = process.env.VOICEFLOW_API_KEY;
-const USER_ID = process.env.USER_ID || 'test-user';
+const USER_ID = req.body.From?.replace('+', '') || 'guest';
 
 const VF_URL = `https://general-runtime.voiceflow.com/state/${VOICEFLOW_VERSION_ID}/user/${USER_ID}/interact`;
 
