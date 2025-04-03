@@ -9,7 +9,7 @@ const VOICEFLOW_VERSION_ID = process.env.VOICEFLOW_VERSION_ID;
 const API_KEY = process.env.VOICEFLOW_API_KEY;
 const USER_ID = process.env.USER_ID || 'test-user';
 
-const VF_URL = `https://general-runtime.voiceflow.com/state/${USER_ID}/interact`;
+const VF_URL = `https://general-runtime.voiceflow.com/state/${VOICEFLOW_VERSION_ID}/user/${USER_ID}/interact`;
 
 app.post('/voice', async (req, res) => {
   const userInput = req.body.SpeechResult || '';
